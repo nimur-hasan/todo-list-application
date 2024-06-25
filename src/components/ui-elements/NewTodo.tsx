@@ -14,7 +14,7 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
 import InputField from './InputField'
 import SelectStatus from './SelectStatus'

@@ -1,5 +1,4 @@
 import { Box, Input, Textarea } from '@chakra-ui/react'
-import React from 'react'
 
 export default function InputField({
   name,

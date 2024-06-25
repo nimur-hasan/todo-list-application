@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Header from './Header'
-import Footer from './Footer'
+import { useEffect, useState } from 'react'
+
 import {
   Box,
   Button,
@@ -10,18 +9,12 @@ import {
   GridItem,
   HStack,
   Input,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Text,
   VStack,
   useDisclosure,
 } from '@chakra-ui/react'
 import Heading from './ui-elements/Heading'
 import Column from './Column'
-import { TbCalendarDue } from 'react-icons/tb'
-import { CiMenuKebab } from 'react-icons/ci'
 import Item from './ui-elements/Item'
 import NewTodo from './ui-elements/NewTodo'
 import { FiPlus } from 'react-icons/fi'

@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import MainApp from './components/MainApp'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { Box, Flex } from '@chakra-ui/react'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <Box bg='#FAFAFA'>

@@ -8,7 +8,6 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
-import React from 'react'
 import { CiMenuKebab } from 'react-icons/ci'
 import { TbCalendarDue } from 'react-icons/tb'
 import { formatDate } from '../../utils/dateConverter'
