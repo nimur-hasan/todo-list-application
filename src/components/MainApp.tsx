@@ -81,7 +81,7 @@ export default function MainApp() {
   return (
     <Box>
       <HStack justifyContent='space-between' mb='8px'>
-        <HStack>
+        <HStack flexGrow={{ base: 1, md: 0 }}>
           <Text display={{ base: 'none', md: 'block' }}>Due:</Text>
           <Input type='date' />
         </HStack>
