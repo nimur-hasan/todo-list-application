@@ -28,7 +28,7 @@ export default function NewTodo({
   onClose: any
   createNewTodo: any
 }) {
-  const isBase = useBreakpointValue({ base: true })
+  const isBase = useBreakpointValue({ base: true, md: false })
   const [formValues, setFormValues] = useState({})
   const handleChange = (e: any) => {
     console.log(e.target.value)
