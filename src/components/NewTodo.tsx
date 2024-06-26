@@ -16,8 +16,8 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
-import InputField from './InputField'
-import SelectStatus from './SelectStatus'
+import InputField from './ui-elements/InputField'
+import SelectStatus from './ui-elements/SelectStatus'
 
 export default function NewTodo({
   isOpen,
@@ -29,7 +29,7 @@ export default function NewTodo({
   createNewTodo: any
 }) {
   const isBase = useBreakpointValue({ base: true, md: false })
-  const [formValues, setFormValues] = useState({})
+  const [formValues, setFormValues] = useState({ status: 'New' })
   const handleChange = (e: any) => {
     console.log(e.target.value)
     setFormValues({
@@ -75,7 +75,7 @@ export default function NewTodo({
                   placeholder='Enter the description'
                   onChange={handleChange}
                 />
-                <SelectStatus onChange={handleChange} />
+                {/* <SelectStatus onChange={handleChange} /> */}
                 <Stack>
                   <Text fontWeight='600'>Due Date:</Text>
                   <Input

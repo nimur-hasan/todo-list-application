@@ -15,8 +15,8 @@ import {
 } from '@chakra-ui/react'
 import Heading from './ui-elements/Heading'
 import Column from './Column'
-import Item from './ui-elements/Item'
-import NewTodo from './ui-elements/NewTodo'
+import Item from './Item'
+import NewTodo from './NewTodo'
 import { FiPlus } from 'react-icons/fi'
 
 export default function MainApp() {
@@ -81,21 +81,15 @@ export default function MainApp() {
   return (
     <Box>
       <HStack justifyContent='space-between' mb='8px'>
-        <HStack flexGrow={{ base: 1, md: 0 }}>
+        {/* <HStack flexGrow={{ base: 1, md: 0 }}>
           <Text display={{ base: 'none', md: 'block' }}>Due:</Text>
           <Input type='date' />
-        </HStack>
+        </HStack> */}
 
         {/* Action Button */}
-        <Button onClick={onOpen}>
-          <HStack alignItems='center'>
-            <FiPlus />
-            <Text>New Todo</Text>
-          </HStack>
-        </Button>
       </HStack>
       <Grid templateColumns='repeat(3, 1fr)' gap='16px'>
-        <GridItem colSpan={{ base: 3, md: 1 }}>
+        <GridItem colSpan={{ base: 3, md: 1 }} overflow='hidden'>
           <Column type='NEW'>
             <Heading bg='#4285F4' item={getTodosLengthByStatus('New')}>
               New
@@ -117,12 +111,26 @@ export default function MainApp() {
                 </>
               ))}
             </VStack>
-            {getTodosLengthByStatus('New') === 0 && (
-              <Center p='16px'>Empty</Center>
-            )}
+            <Box p='16px'>
+              <Box
+                p='16px'
+                display='flex'
+                justifyContent='center'
+                borderStyle='dashed'
+                borderWidth='1px'
+                borderColor='white'
+                onClick={onOpen}
+                bg='#FFFFFF79'
+              >
+                <HStack alignItems='center'>
+                  <FiPlus />
+                  <Text>New Todo</Text>
+                </HStack>
+              </Box>
+            </Box>
           </Column>
         </GridItem>
-        <GridItem colSpan={{ base: 3, md: 1 }}>
+        <GridItem colSpan={{ base: 3, md: 1 }} overflow='hidden'>
           <Column type='ONGOING'>
             <Heading bg='#F4B400' item={getTodosLengthByStatus('Ongoing')}>
               Ongoing
@@ -149,7 +157,7 @@ export default function MainApp() {
             )}
           </Column>
         </GridItem>
-        <GridItem colSpan={{ base: 3, md: 1 }}>
+        <GridItem colSpan={{ base: 3, md: 1 }} overflow='hidden'>
           <Column type='DONE'>
             <Heading bg='#0F9D58' item={getTodosLengthByStatus('Done')}>
               Done

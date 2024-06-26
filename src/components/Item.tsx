@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Divider,
   HStack,
@@ -10,7 +11,8 @@ import {
 } from '@chakra-ui/react'
 import { CiMenuKebab } from 'react-icons/ci'
 import { TbCalendarDue } from 'react-icons/tb'
-import { formatDate } from '../../utils/dateConverter'
+import { formatDate } from '../utils/dateConverter'
+import { isDateExpired } from '../utils/isDateExpired'
 
 export default function Item({
   index,
@@ -35,17 +37,46 @@ export default function Item({
         rounded='8px'
         bg='white'
       >
-        <Text fontSize='18px' fontWeight='600'>
-          {todo.title}
-        </Text>
+        <HStack
+          maxW='100%'
+          justifyContent='space-between'
+          alignItems='flex-start'
+          flexWrap='nowrap'
+        >
+          <Box flexGrow='1' fontSize='18px' fontWeight='600' noOfLines={2}>
+            {todo.title}
+          </Box>
+          <Box>
+            <Badge
+              bg={`${
+                todo.status.toLowerCase() === 'new'
+                  ? `#E3F2FD`
+                  : todo.status.toLowerCase() === 'ongoing'
+                  ? `#FFF9C4`
+                  : `#C8E6C9`
+              }`}
+              px='8px'
+              py='4px'
+            >
+              {todo.status}
+            </Badge>
+          </Box>
+        </HStack>
         <Text fontSize='14px'>{todo.description}</Text>
         <Divider my='8px' />
         <HStack justifyContent='space-between' alignItems='center'>
           <HStack mt='8px'>
             <TbCalendarDue />
             <Text fontSize='14px' fontWeight='600'>
-              {formatDate(todo.due)}
+              {formatDate(todo.due)}{' '}
             </Text>
+            <Box>
+              {isDateExpired(todo.due) && todo.status !== 'Done' && (
+                <Badge as='span' color='red'>
+                  Expired
+                </Badge>
+              )}
+            </Box>
           </HStack>
           <Menu>
             <MenuButton>
