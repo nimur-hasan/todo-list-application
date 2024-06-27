@@ -8,11 +8,13 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useOutsideClick,
 } from '@chakra-ui/react'
 import { CiMenuKebab } from 'react-icons/ci'
 import { TbCalendarDue } from 'react-icons/tb'
 import { formatDate } from '../utils/dateConverter'
 import { isDateExpired } from '../utils/isDateExpired'
+import { useRef, useState } from 'react'
 
 export default function Item({
   index,
@@ -27,8 +29,23 @@ export default function Item({
   handleRemove: any
   type: 'NEW' | 'ONGOING' | 'DONE'
 }) {
+  const ref = useRef()
+  const [isOpen, setIsOpen] = useState(false)
+  const handleOnContext = (e: any) => {
+    e.preventDefault()
+    console.log('first')
+    setIsOpen(true)
+  }
+
+  useOutsideClick({
+    // @ts-ignore
+    ref: ref,
+    handler: () => setIsOpen(false),
+  })
+
   return (
-    <Box w='100%' p='8px'>
+    // @ts-ignore
+    <Box ref={ref} w='100%' p='8px' onContextMenu={handleOnContext}>
       <Box
         w='100%'
         p='16px'
@@ -78,7 +95,7 @@ export default function Item({
               )}
             </Box>
           </HStack>
-          <Menu>
+          <Menu isOpen={isOpen}>
             <MenuButton>
               <CiMenuKebab />
             </MenuButton>

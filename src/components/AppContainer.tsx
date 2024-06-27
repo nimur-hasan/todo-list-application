@@ -2,21 +2,19 @@ import { useEffect, useState } from 'react'
 
 import {
   Box,
-  Button,
   Center,
   Divider,
   Grid,
   GridItem,
   HStack,
-  Input,
   Text,
   VStack,
   useDisclosure,
 } from '@chakra-ui/react'
 import Heading from './ui-elements/Heading'
-import Column from './Column'
-import Item from './Item'
-import NewTodo from './NewTodo'
+import TodoContainer from './TodoContainer'
+import TodoItem from './TodoItem'
+import CreateNewTodo from './CreateNewTodo'
 import { FiPlus } from 'react-icons/fi'
 
 export default function MainApp() {
@@ -90,7 +88,7 @@ export default function MainApp() {
       </HStack>
       <Grid templateColumns='repeat(3, 1fr)' gap='16px'>
         <GridItem colSpan={{ base: 3, md: 1 }} overflow='hidden'>
-          <Column type='NEW'>
+          <TodoContainer type='NEW'>
             <Heading bg='#4285F4' item={getTodosLengthByStatus('New')}>
               New
             </Heading>
@@ -99,7 +97,7 @@ export default function MainApp() {
               {todos.map((todo: any, index: number) => (
                 <>
                   {todo.status === 'New' && (
-                    <Item
+                    <TodoItem
                       key={index}
                       index={index}
                       todo={todo}
@@ -128,10 +126,10 @@ export default function MainApp() {
                 </HStack>
               </Box>
             </Box>
-          </Column>
+          </TodoContainer>
         </GridItem>
         <GridItem colSpan={{ base: 3, md: 1 }} overflow='hidden'>
-          <Column type='ONGOING'>
+          <TodoContainer type='ONGOING'>
             <Heading bg='#F4B400' item={getTodosLengthByStatus('Ongoing')}>
               Ongoing
             </Heading>
@@ -140,7 +138,7 @@ export default function MainApp() {
               {todos.map((todo: any, index: number) => (
                 <>
                   {todo.status === 'Ongoing' && (
-                    <Item
+                    <TodoItem
                       key={index}
                       index={index}
                       todo={todo}
@@ -155,10 +153,10 @@ export default function MainApp() {
             {getTodosLengthByStatus('Ongoing') === 0 && (
               <Center p='16px'>Empty</Center>
             )}
-          </Column>
+          </TodoContainer>
         </GridItem>
         <GridItem colSpan={{ base: 3, md: 1 }} overflow='hidden'>
-          <Column type='DONE'>
+          <TodoContainer type='DONE'>
             <Heading bg='#0F9D58' item={getTodosLengthByStatus('Done')}>
               Done
             </Heading>
@@ -167,7 +165,7 @@ export default function MainApp() {
               {todos.map((todo: any, index: number) => (
                 <>
                   {todo.status === 'Done' && (
-                    <Item
+                    <TodoItem
                       key={index}
                       index={index}
                       todo={todo}
@@ -182,10 +180,10 @@ export default function MainApp() {
             {getTodosLengthByStatus('Done') === 0 && (
               <Center p='16px'>Empty</Center>
             )}
-          </Column>
+          </TodoContainer>
         </GridItem>
       </Grid>
-      <NewTodo
+      <CreateNewTodo
         isOpen={isOpen}
         onClose={onClose}
         createNewTodo={createNewTodo}
